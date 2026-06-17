@@ -1,0 +1,39 @@
+name: Publish to npm (with provenance)
+
+# Publishes a provenance-signed package to npm.
+# Required for n8n verified / official community node submission.
+#
+# Prerequisites (one-time):
+#   1. Create an npm "Automation" (granular) access token with publish rights
+#      for n8n-nodes-virtual-marketer.
+#   2. Add it as a repository secret named NPM_TOKEN
+#      (Settings -> Secrets and variables -> Actions -> New repository secret).
+#
+# Trigger it by publishing a GitHub Release, or run it manually from the
+# Actions tab (workflow_dispatch). Make sure package.json's version is bumped
+# first — npm rejects re-publishing an existing version.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # required for npm provenance
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
