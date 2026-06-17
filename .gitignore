@@ -1,0 +1,16 @@
+node_modules
+dist
+.tmp
+tmp
+npm-debug.log*
+yarn-error.log
+.DS_Store
+*.tsbuildinfo
+coverage
+logo-original.png
+
+.npmrc
+
+# Local-only dev tests (kept out of the published repo)
+test
+jest.config.js
