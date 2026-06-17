@@ -1,7 +1,7 @@
 {
   "name": "n8n-nodes-virtual-marketer",
-  "version": "0.1.0",
-  "description": "n8n community node for the Virtual Marketer AI platform — generate AI-powered marketing text, list products and check word usage via the Virtual Marketer API.",
+  "version": "0.1.1",
+  "description": "n8n community node for the Virtual Marketer AI platform — generate AI-powered marketing text, list AI models and check word usage via the Virtual Marketer API.",
   "keywords": [
     "n8n-community-node-package",
     "n8n",

@@ -12,7 +12,10 @@ export class VirtualMarketerApi implements ICredentialType {
 
 	documentationUrl = 'https://virtual-marketer.de';
 
-	icon = { light: 'file:../nodes/VirtualMarketer/virtualMarketer.png', dark: 'file:../nodes/VirtualMarketer/virtualMarketer.png' } as const;
+	icon = {
+		light: 'file:../nodes/VirtualMarketer/virtualMarketer.svg',
+		dark: 'file:../nodes/VirtualMarketer/virtualMarketer.svg',
+	} as const;
 
 	properties: INodeProperties[] = [
 		{

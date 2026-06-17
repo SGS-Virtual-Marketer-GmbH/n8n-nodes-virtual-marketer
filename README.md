@@ -1,6 +1,6 @@
 # n8n-nodes-virtual-marketer
 
-![Virtual Marketer](https://raw.githubusercontent.com/SGS-Virtual-Marketer-GmbH/n8n-nodes-virtual-marketer/main/nodes/VirtualMarketer/virtualMarketer.png)
+![Virtual Marketer](https://raw.githubusercontent.com/SGS-Virtual-Marketer-GmbH/n8n-nodes-virtual-marketer/main/nodes/VirtualMarketer/virtualMarketer.svg)
 
 This is an [n8n](https://n8n.io/) community node. It lets you use the **[Virtual Marketer](https://virtual-marketer.de)** AI platform in your n8n workflows.
 

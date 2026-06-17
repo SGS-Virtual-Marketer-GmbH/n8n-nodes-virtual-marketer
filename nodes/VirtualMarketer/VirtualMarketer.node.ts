@@ -50,7 +50,7 @@ export class VirtualMarketer implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Virtual Marketer',
 		name: 'virtualMarketer',
-		icon: { light: 'file:virtualMarketer.png', dark: 'file:virtualMarketer.png' },
+		icon: { light: 'file:virtualMarketer.svg', dark: 'file:virtualMarketer.svg' },
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
