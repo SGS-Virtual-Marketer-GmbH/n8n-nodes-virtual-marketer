@@ -47,4 +47,4 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run lint
       - run: npm run build
-      - run: npm publish --provenance --access public
+      - run: npm publish --provenance --access public --loglevel verbose
