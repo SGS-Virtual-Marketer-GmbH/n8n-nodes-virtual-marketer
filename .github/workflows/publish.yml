@@ -1,16 +1,17 @@
 name: Publish to npm (with provenance)
 
-# Publishes a provenance-signed package to npm.
-# Required for n8n verified / official community node submission.
+# Publishes a provenance-signed package to npm using npm "trusted publishing"
+# (OIDC) — no NPM_TOKEN secret required. Provenance is required for n8n
+# verified / official community node submission, and requires a PUBLIC repo.
 #
-# Prerequisites (one-time):
-#   1. Create an npm "Automation" (granular) access token with publish rights
-#      for n8n-nodes-virtual-marketer.
-#   2. Add it as a repository secret named NPM_TOKEN
-#      (Settings -> Secrets and variables -> Actions -> New repository secret).
+# One-time setup on npmjs.com (Account/Package -> Settings -> Trusted Publisher):
+#   Provider:        GitHub Actions
+#   Organization:    SGS-Virtual-Marketer-GmbH
+#   Repository:      n8n-nodes-virtual-marketer
+#   Workflow filename: publish.yml
 #
-# Trigger it by publishing a GitHub Release, or run it manually from the
-# Actions tab (workflow_dispatch). Make sure package.json's version is bumped
+# Then publish by either creating a GitHub Release or running this workflow
+# manually (Actions tab -> Run workflow). Bump the version in package.json
 # first — npm rejects re-publishing an existing version.
 
 on:
@@ -23,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write # required for npm provenance
+      id-token: write # required for npm provenance + trusted publishing
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -31,9 +32,9 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org
           cache: npm
+      # Trusted publishing / OIDC support needs a recent npm.
+      - run: npm install -g npm@latest
       - run: npm ci
       - run: npm run lint
       - run: npm run build
       - run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
