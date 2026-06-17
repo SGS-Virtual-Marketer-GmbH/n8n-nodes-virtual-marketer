@@ -15,6 +15,8 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      - run: npm ci
+      # --ignore-scripts skips the native build of isolated-vm (a transitive
+      # dev dependency of n8n-workflow); only its type definitions are needed.
+      - run: npm ci --ignore-scripts
       - run: npm run lint
       - run: npm run build
