@@ -144,7 +144,7 @@ export class VirtualMarketer implements INodeType {
 				},
 				required: true,
 				default: '',
-				placeholder: 'e.g. Ich suche eine Ultraschallspitze',
+				placeholder: 'e.g. I am looking for a product recommendation',
 				description: 'The input text / query to process',
 				displayOptions: {
 					show: {
